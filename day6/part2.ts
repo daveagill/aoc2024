@@ -7,7 +7,6 @@ export function part2() {
     const grid = lines.join('').split('');
     const width = lines[0].length;
     const height = lines.length;
-    const set = (x:number, y:number, c:string) => grid[x + y*width] = c;
     const get = (x:number, y:number) => grid[x + y*width];
 
     // start by figuring out the initial x,y position of the guard, guard always starts facing upwards
@@ -30,12 +29,14 @@ export function part2() {
         // we're not allowed to drop an obstracle on the guard's starting position
         if (index === posIdx) { return; }
 
+        // no point dropping obstacles on top of obstacles
+        if (value === '#') { return; }
+
         // drop an obstacle
         grid[index] = '#';
 
         // simulate until we detect a successful loop or the guard leaves the map
-        while (isOnMap(x, y) && !hasVisited()) {
-            recordVisit();
+        while (true) {
 
             // determine the guard's next possible position or next clockwise orientation
             let [nextX, nextY] = [x, y];
@@ -53,14 +54,19 @@ export function part2() {
             // advance position or change orientation to by turning clockwise to avoid a collision
             if (hasCollided) {
                 direction = clockwise;
+
+                // detect if the guard is stuck in a loop
+                if (hasVisited()) {
+                    ++numLoopsFound;
+                    break;
+                }
+                recordVisit();
             } else {
                 [x, y] = [nextX, nextY];
-            }
-        }
 
-        // did we create a successful loop?
-        if (hasVisited()) {
-            ++numLoopsFound;
+                // detect if the guard left the map
+                if (!isOnMap(x, y)) { break; }
+            }
         }
 
         // reset state for the next iteration
