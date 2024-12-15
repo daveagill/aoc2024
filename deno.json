@@ -1,7 +1,10 @@
 {
   "tasks": {
     "d1p1": "deno run --allow-read day1/part1.ts",
-    "d1p2": "deno run --allow-read day1/part2.ts"
+    "d1p2": "deno run --allow-read day1/part2.ts",
+    
+    "d2p1": "deno run --allow-read day2/part1.ts",
+    "d2p2": "deno run --allow-read day2/part2.ts",
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@1"
