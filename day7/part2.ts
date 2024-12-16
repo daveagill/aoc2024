@@ -3,7 +3,7 @@ import { readLines } from "../helpers.ts";
 export function part2() {
     const lines = readLines("day7/data.txt");
 
-    function recursivelyTryOperators(target:number, partialAnswer:number, operands:numbers[]) {
+    function recursivelyTryOperators(target:number, partialAnswer:number, operands:number[]): boolean {
         // base case, did we match our target value?
         if (operands.length === 0) {
             return target === partialAnswer;
