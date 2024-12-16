@@ -20,6 +20,9 @@
 
     "d7p1": "deno run --allow-read day7/part1.ts",
     "d7p2": "deno run --allow-read day7/part2.ts",
+
+    "d8p1": "deno run --allow-read day8/part1.ts",
+    "d8p2": "deno run --allow-read day8/part2.ts",
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@1"
