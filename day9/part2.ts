@@ -49,8 +49,6 @@ export function part2() {
         ++src;
     }
 
-    console.log(spans);
-
     // compute the compacted checksum
     let checksum = 0;
     let index = 0;
