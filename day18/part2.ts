@@ -58,11 +58,19 @@ export function part2() {
         return distances.get(endIdx);
     };
 
-    for (let i = 1024; i < lines.length; ++i) {
-        if (lookForPath(i) === undefined) {
-            return coords[i-1].join(",");
+    // binary search to find the first block that blocks a path
+    let lo = 0;
+    let hi = lines.length;
+    while (hi > lo) {
+        const mid = Math.trunc(lo + (hi - lo) / 2);
+        if (lookForPath(mid) === undefined) {
+            hi = mid;
+        } else {
+            lo = mid+1;
         }
     }
+    
+    return coords[Math.max(0, hi-1)].join(",");
 }
 
 if (import.meta.main) {
