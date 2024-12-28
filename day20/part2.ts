@@ -42,8 +42,6 @@ export function part2() {
         }
     }
 
-    console.log('calculating cheats');
-
     // find cheats by comparing every pair of cells on the main route,
     // if the manhattan-distance between them is 20 or less then they are a viable cheat
     // count how many save at least 100 units
